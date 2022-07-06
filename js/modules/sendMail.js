@@ -52,7 +52,7 @@ export default function send() {
         button.innerText = "ERRO";
         if (res.status === 500) {
           span.innerText =
-            "Erro ao enviar o e-mail. Por favor, mande uma mensagem diretamente para nanda.oliveira009@gmail.com";
+            "Erro ao enviar o e-mail. Por favor, mande uma mensagem diretamente para hipnoterapiabarros520@gmail.com";
           container.removeEventListener("click", sendEmail);
           container.insertAdjacentElement("afterend", span);
         } else {
