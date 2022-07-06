@@ -121,8 +121,7 @@ export default function handleNavigation() {
   );
   buttons.forEach((btn) =>
     btn.addEventListener("click", () => {
-      const isToContactSection =
-        btn.querySelector("button").innerText === "Entrar em contato";
+      const isToContactSection = btn.classList.contains("to-contact");
       if (isToContactSection) {
         scrollTo(0, sectionsScrollHeights[sections.length - 1][0]);
       } else {

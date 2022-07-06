@@ -5,7 +5,7 @@ import responsive from "./modules/responsive.js";
 import mobileSlide from "./modules/mobileSlide.js";
 
 // Responsiveness
-onload = responsive();
+responsive();
 
 // Testimonials slide
 setSlide(".testimonial-slide");

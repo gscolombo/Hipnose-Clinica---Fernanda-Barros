@@ -37,6 +37,9 @@ export default function send() {
 
       const res = await fetch("sendEmail.php", {
         method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         body: JSON.stringify(body),
       });
       container.classList.remove("loading");
