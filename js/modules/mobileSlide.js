@@ -27,10 +27,10 @@ export default function mobileSlide() {
   }
 
   function changeSlide() {
-    if (position.current < -80) {
+    if (position.current < -50) {
       increaseIndex();
     }
-    if (position.current > 80) {
+    if (position.current > 50) {
       decreaseIndex();
     }
 

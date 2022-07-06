@@ -3,10 +3,9 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    require 'vendor/autoload.php';
+    require '../vendor/autoload.php';
 
     $data = json_decode(file_get_contents("php://input", true), true);
-    var_dump($data);
 
     $noFieldEmpty = $data['name'] !== "" && $data["email"] !== "" && $data["message"] !== "";
     $regexp = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/";

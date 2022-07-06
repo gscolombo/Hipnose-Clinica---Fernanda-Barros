@@ -127,7 +127,7 @@
     & > figure {
       position: absolute;
       width: 217px;
-      height: 217px;
+      min-height: fit-content;
       border-radius: 2px 2px 0px 2px;
       bottom: 40%;
       left: -10%;
