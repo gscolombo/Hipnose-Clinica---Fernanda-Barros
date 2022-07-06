@@ -1,0 +1,63 @@
+.remote-service {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 0.5fr 0.5fr;
+  margin-top: 144px;
+  background: 57.25% / cover no-repeat url("img/Atendimento.png");
+  min-height: 321px;
+  min-width: 75vw;
+  padding: 48px 96px;
+  @include mobile {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, fit-content(100%));
+    padding: 250px 20px 80px 20px;
+    background: 100% top / cover no-repeat url("img/Atendimento-portrait.png");
+    min-height: 714px;
+    text-align: center;
+  }
+  .text {
+    grid-column: 2 / 3;
+    margin-right: 40px;
+    height: fit-content;
+    @include mobile {
+      grid-column: 1 / -1;
+      margin-right: 0;
+    }
+    h1 {
+      text-align: left;
+      align-items: flex-start;
+      @include typo(32, "regular", $main-blue);
+      margin: 0;
+      @include mobile {
+        text-align: center;
+        align-items: center;
+        @include typo(24, "regular", $main-blue);
+      }
+    }
+    p {
+      margin-top: 24px;
+      @include typo(24, "regular", #1d2939);
+    }
+  }
+  .circle-text {
+    background-color: $main-blue;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    height: calc(7rem + 108px);
+    @include mobile {
+      margin: 40px auto 0 auto;
+    }
+    p {
+      text-align: center;
+      @include typo(18.12, "regular", white);
+      margin-top: 8px;
+      b {
+        color: #e3bf97;
+      }
+    }
+  }
+}

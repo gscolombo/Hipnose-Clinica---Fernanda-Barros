@@ -1,0 +1,159 @@
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, fit-content(100%));
+  align-items: center;
+  min-height: fit-content;
+  width: clamp(460px, calc((5 / 6) * 100%), 1240px);
+  margin: 0 auto;
+  padding: 144px 0;
+  column-gap: 10vw;
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 25px;
+  }
+  h1 {
+    grid-row: 1 / 2;
+    margin-bottom: 64px;
+    @include typo(24, "regular", $main-blue);
+    text-transform: uppercase;
+    @include mobile {
+      text-align: center;
+    }
+  }
+  .certificates-images {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    @include mobile {
+      margin: 0 auto 40px auto;
+    }
+  }
+  @include halfBar;
+  @include mobile {
+    @include fullBar;
+    .svg-container {
+      .bar-1 {
+        transform: translate3d(calc(50% - 40px), 0, 0);
+      }
+    }
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    grid-row: 2 / 3;
+    align-self: self-start;
+    @include mobile {
+      align-items: center;
+    }
+    p {
+      grid-row: 2 / 3;
+      margin-bottom: 24px;
+      @include typo(16, "semibold", $main-blue);
+      &:last-of-type {
+        @include typo(16, "regular", $blue-black);
+        margin-bottom: 64px;
+      }
+    }
+    .buttonContainer {
+      grid-row: 2 / 3;
+      margin-bottom: 80px;
+    }
+    @include button;
+    ul {
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      @include mobile {
+        margin-bottom: 64px;
+        h2 {
+          text-align: center;
+        }
+      }
+      h2 {
+        @include typo(16, "semibold", $main-blue);
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      li {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 10px;
+        @include typo(16, "regular", black);
+        a {
+          @include typo(16, "semibold", $main-blue);
+          text-decoration: underline;
+        }
+        &::before {
+          content: url("img/list-icon-2.svg");
+          display: block;
+        }
+      }
+    }
+  }
+  .portrait-with-quote {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: self-end;
+    position: relative;
+    @include mobile {
+      grid-column: none;
+      align-self: center;
+    }
+    .portrait-slide {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      figure {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+      .navigator {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+        & button:last-of-type {
+          transform: rotate(180deg);
+        }
+        img {
+          display: block;
+        }
+      }
+    }
+    & > figure {
+      position: absolute;
+      width: 217px;
+      height: 217px;
+      border-radius: 2px 2px 0px 2px;
+      bottom: 40%;
+      left: -10%;
+      background: linear-gradient($main-blue 23.96%, rgba(64, 106, 133, 0.5));
+      padding: 33px 11px 25px 24px;
+      @include mobile {
+        left: 0;
+        bottom: 50px;
+        width: 171px;
+        height: 171px;
+      }
+      img {
+        position: absolute;
+        z-index: 0;
+        top: -10%;
+        left: 7.5%;
+        transform: scale(0.75);
+      }
+      blockquote {
+        position: relative;
+        z-index: 1;
+        @include typo(16, "regular", white);
+        @include mobile {
+          @include typo(11, "regular", white);
+        }
+      }
+    }
+  }
+}

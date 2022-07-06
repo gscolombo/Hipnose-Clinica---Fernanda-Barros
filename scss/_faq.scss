@@ -1,0 +1,82 @@
+.faq {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 144px 25vw;
+  @include mobile {
+    padding: 80px 25px;
+  }
+  @include fullBar;
+  h1 {
+    margin: 0 auto 144px auto;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include typo(24, "regular", $main-blue);
+    text-transform: uppercase;
+    @include mobile {
+      margin: 0 auto 80px auto;
+    }
+    .svg-container {
+      margin-top: 24px;
+      position: relative;
+      min-width: min(140%, calc(100vw - 50px));
+      @include mobile {
+        right: 0;
+      }
+    }
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #d8d8d8;
+    .content {
+      display: flex;
+      flex-direction: column;
+      transition: height 0.3s;
+      overflow: hidden;
+      h2 {
+        @include typo(16, "regular", #1d2939);
+        text-transform: uppercase;
+        transition: all 0.3s;
+        overflow-x: unset;
+      }
+      p {
+        margin-top: 24px;
+        @include typo(16, "regular", #1d2939);
+        animation: FadeOutToTop 0.3s forwards;
+        overflow-x: unset;
+      }
+    }
+    button {
+      transform: rotate(180deg);
+      padding-right: 80px;
+      @include mobile(true) {
+        padding-right: 20px;
+      }
+      img {
+        animation: UnshiftArrow 0.3s forwards;
+        max-width: fit-content;
+      }
+    }
+    &.active {
+      h2 {
+        @include typo(16, "semibold", $main-blue);
+      }
+      p {
+        display: inline;
+        margin-top: 24px;
+        @include typo(16, "regular", #1d2939);
+        animation: FadeInFromTop 0.3s;
+      }
+
+      button img {
+        animation: ShiftArrow 0.3s forwards;
+      }
+    }
+  }
+}

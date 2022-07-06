@@ -1,0 +1,56 @@
+.specialties {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fdfaf6;
+  min-height: fit-content;
+  @include mobile {
+    overflow: hidden;
+    padding: 0 25px;
+  }
+  h1 {
+    margin: 80px auto 40px auto;
+    @include typo(24, "bold", $main-blue);
+    text-transform: uppercase;
+  }
+  @include fullBar;
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 111px 12.5% 64px 12.5%;
+    gap: 96px;
+    max-width: 100%;
+    transition: transform 0.2s ease-out;
+    @include mobile {
+      gap: 48px;
+      grid-template-columns: repeat(3, 100%);
+    }
+    @include mobile(true) {
+      gap: 16px;
+    }
+    li {
+      display: flex;
+      flex-direction: column;
+      img {
+        max-width: 100%;
+        margin-bottom: 40px;
+      }
+      h2 {
+        margin-bottom: 24px;
+        @include typo(16, "semibold", $main-blue);
+        line-height: 20px;
+        text-transform: uppercase;
+      }
+      p {
+        @include typo(16, "regular", #1d2939);
+        &:first-of-type {
+          margin-bottom: 24px;
+        }
+      }
+    }
+  }
+  @include button;
+  .buttonContainer {
+    margin-bottom: 80px;
+  }
+}

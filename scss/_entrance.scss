@@ -1,0 +1,220 @@
+.entrance {
+  background: linear-gradient(180deg, #172731 -13%, rgba(16, 69, 102, 0) 37%),
+    url("img/home_bg.png") no-repeat;
+  background-size: cover;
+  background-position: 100% 50%;
+  text-align: center;
+  padding-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  h1 {
+    @include typo(24, "regular", $main-blue);
+    line-height: calc(1.22 * 24) + px;
+    padding-bottom: 24px;
+    text-transform: uppercase;
+    p {
+      @include typo(36, "bold", $main-blue);
+    }
+  }
+  & > h1 {
+    position: absolute;
+    top: 228px;
+    border-bottom: 2px solid $main-orange;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 80%,
+      65% 80%,
+      65% 100%,
+      35% 100%,
+      35% 80%,
+      0% 80%
+    );
+  }
+  .menu-with-logo {
+    display: flex;
+    gap: max(16px, 3vw);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px min(96px, 5vw);
+    min-width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    border-bottom: 0.5px solid unquote($white + "33");
+    @include typo(16, "regular", $white);
+    transition: --gradientColor 0.25s;
+    background: linear-gradient(
+      180deg,
+      var(--gradientColor) 0%,
+      rgba(16, 69, 102, 0) 164.29%
+    );
+    @include mobile {
+      padding: 16px 24px;
+      @include sandwichMenu;
+    }
+    &.toggle-color {
+      --gradientColor: #104566ff;
+      background: linear-gradient(
+        180deg,
+        var(--gradientColor) 0%,
+        rgba(16, 69, 102, 0) 164.29%
+      );
+      background-size: 100% 150%;
+      backdrop-filter: blur(5px);
+    }
+    a {
+      cursor: pointer;
+    }
+    .ig-logo-and-menu-icon {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
+      z-index: 1;
+      .mobile-bar-svg {
+        display: none;
+      }
+      @include mobile {
+        flex-direction: column;
+        background-color: $main-blue;
+        position: fixed;
+        right: -300px;
+        padding: 40px 46px;
+        transition: all 0.4s;
+        &.show-menu {
+          right: 0;
+        }
+        li a.active::after {
+          content: "";
+          display: block;
+          margin: 16px auto 0 auto;
+          width: 80px;
+          height: 2px;
+          background-color: white;
+        }
+      }
+    }
+    div.svg-container {
+      position: fixed;
+      width: 100%;
+      height: 86px;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      .bar {
+        transition: transform 0.25s;
+      }
+      @include mobile {
+        display: none;
+      }
+    }
+    .ig-logo {
+      background-color: unquote($white + "33");
+      padding: 10px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+  }
+  &.active .entrance-sub-resume ul li {
+    animation: FadeInFromTop 0.5s forwards;
+    @include delay(4, 0.25s);
+  }
+}
+
+.entrance-sub-resume {
+  background: linear-gradient(white, $light-beige);
+  position: absolute;
+  top: 85%;
+  left: 12.5%;
+  right: 12.5%;
+  min-height: fit-content;
+  min-width: 75%;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 4px;
+  @include mobile {
+    min-width: unset;
+    width: min(80%, 460px);
+  }
+  h1 {
+    margin-bottom: 64px;
+    font-size: 1.375rem;
+    padding: 0;
+  }
+  ul {
+    display: flex;
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      width: 25%;
+      font-size: 1.125rem;
+      opacity: 0;
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 24px;
+        img {
+          max-width: 64px;
+        }
+      }
+      &::after {
+        content: "";
+        height: 80px;
+        width: 1px;
+        background-color: $light-beige;
+      }
+      &:first-child {
+        .content {
+          padding: 0 24px 0 0;
+        }
+      }
+      &:last-child {
+        &::after {
+          width: 0px;
+        }
+      }
+      p {
+        @include typo(16, "regular", $main-blue);
+      }
+      @include mobile {
+        width: 100%;
+        padding-right: 0;
+        flex-direction: column;
+        .content {
+          padding: 24px 0;
+        }
+        &::after {
+          width: 80px;
+          height: 1px;
+          margin: 0 auto;
+        }
+        &:first-child {
+          .content {
+            padding: 0 0 24px 0;
+          }
+        }
+      }
+    }
+  }
+}

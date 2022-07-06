@@ -1,0 +1,126 @@
+.testimonials {
+  background: #fdfaf6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: fit-content;
+  max-width: 90%;
+  margin: 0 auto;
+  h1 {
+    @include typo(24, "regular", $main-blue);
+    text-transform: uppercase;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    @include mobile {
+      text-align: center;
+    }
+  }
+  .testimonial-slide {
+    display: flex;
+    margin: 80px 0;
+    gap: 10px;
+    max-width: 75%;
+    justify-content: space-between;
+    overflow-x: unset;
+    @include mobile(true) {
+      min-width: 100%;
+      padding: 0 24px;
+    }
+    button:last-child img {
+      transform: rotate(180deg);
+    }
+    figure {
+      display: none;
+      &.active {
+        position: relative;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        width: clamp(calc((1 / 3) * 100%), calc((2 / 3) * 100%), 1024px);
+        overflow-x: unset;
+        figcaption {
+          line-height: 1.75rem;
+          align-self: flex-start;
+          position: relative;
+          overflow-x: unset;
+          img:first-child {
+            position: absolute;
+            top: -9.375%;
+            left: -6.25%;
+            z-index: 0;
+            @include mobile {
+              left: -3.125%;
+              top: -4.6875%;
+            }
+          }
+          p {
+            @include typo(28, "regular", $main-blue);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+          }
+          .author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            img {
+              position: initial;
+            }
+            strong {
+              @include typo(16, "bold", $main-blue);
+            }
+          }
+        }
+        blockquote {
+          z-index: 1;
+          max-width: 50%;
+          max-height: 100%;
+          scrollbar-width: 2px;
+          p {
+            margin-bottom: 24px;
+            @include typo(16, "regular", #1d2939);
+          }
+          p:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    @include mobile {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: fit-content(100%) fit-content(100%);
+      button {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        margin-left: 10px;
+        &:first-child {
+          grid-column: 1 / 2;
+          direction: rtl;
+          margin-left: 0;
+          margin-right: 10px;
+        }
+      }
+      figure.active {
+        grid-column: 1 / 3;
+        flex-direction: column;
+        margin: 0 auto;
+        align-items: center;
+        height: 600px;
+        blockquote {
+          min-width: 100%;
+        }
+      }
+    }
+    @include mobile(true) {
+      figure.active {
+        height: fit-content;
+        min-width: 100%;
+      }
+      button {
+        margin-top: 64px;
+      }
+    }
+  }
+  @include fullBar;
+}

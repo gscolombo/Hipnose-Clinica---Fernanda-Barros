@@ -1,0 +1,29 @@
+footer {
+  display: flex;
+  background-color: $main-blue;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 80px;
+  @include mobile {
+    padding: 24px;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    @include typo(16, "regular", white);
+    button {
+      padding: 10px;
+      border-radius: 50%;
+      background-color: unquote($white + "33");
+    }
+    span {
+      display: inline;
+    }
+    @include mobile {
+      span {
+        display: none;
+      }
+    }
+  }
+}

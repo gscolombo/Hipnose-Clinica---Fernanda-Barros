@@ -1,0 +1,258 @@
+@use "sass:string";
+
+$main-blue: #104566;
+$main-orange: #d19451;
+$beige: #fcf5eb;
+$light-beige: #f6eadc;
+$white: #fbf5ea;
+$blue-black: #344054;
+
+@mixin delay($number, $wait) {
+  @for $i from 0 through $number {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * $wait;
+    }
+  }
+}
+
+@mixin typo($size, $weight, $color) {
+  font-size: calc($size / 16) + rem;
+  line-height: 1.5 * $size + px;
+  font-family: "Montserrat", sans-serif;
+  color: $color;
+  @if $weight == "regular" {
+    font-weight: 400;
+  } @else if $weight == "semibold" {
+    font-weight: 600;
+  } @else if $weight == "bold" {
+    font-weight: 700;
+  }
+}
+
+@mixin fullBar {
+  .svg-container {
+    display: flex;
+    max-height: fit-content;
+    min-width: 100%;
+    .bar-1,
+    .bar-2 {
+      clip-path: inset(0 50%);
+    }
+    .bar-1 {
+      fill: $main-blue;
+    }
+    .bar-2 {
+      fill: $main-orange;
+    }
+  }
+  &.active {
+    .svg-container {
+      .bar-1 {
+        animation: GrowFromCenter 0.5s forwards;
+      }
+      .bar-2 {
+        animation: GrowFromCenter 1.25s 0.25s forwards;
+      }
+    }
+  }
+}
+
+@mixin halfBar {
+  .svg-container {
+    display: flex;
+    padding-top: 24px;
+    .bar-1 {
+      fill: $main-blue;
+      transform: translate3d(calc(100% - 80px), 0, 0);
+    }
+    .bar-2 {
+      fill: $main-orange;
+      clip-path: inset(0 0 0 100%);
+    }
+  }
+  &.active {
+    .svg-container {
+      .bar-1 {
+        animation: SlideBarFromRight 0.75s ease-in-out forwards;
+      }
+      .bar-2 {
+        animation: ShowBarFromRight 0.75s ease-in-out forwards;
+      }
+    }
+  }
+}
+
+@mixin button {
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 196px;
+    padding: 12px 16px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    background-color: $main-orange;
+    transition: all 0.3s;
+    cursor: pointer;
+    button {
+      display: inline;
+      padding: 0;
+      @include typo(12, "semibold", $main-blue);
+      text-transform: uppercase;
+      letter-spacing: normal;
+      transition: all 0.25s;
+    }
+    .bottom-bar,
+    .top-bar {
+      position: relative;
+      width: 0;
+      transition: width 0.2s;
+      fill: $main-orange;
+    }
+    .bottom-bar {
+      bottom: -14px;
+    }
+    .top-bar {
+      top: -14px;
+    }
+    &:hover {
+      .bottom-bar,
+      .top-bar {
+        width: 196px;
+      }
+      button {
+        letter-spacing: 1px;
+      }
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin mobile($for-real: false) {
+  @if $for-real {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: 1024px) {
+      @content;
+    }
+  }
+}
+
+@keyframes bar1Active {
+  0% {
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 0, 0);
+  }
+  60% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 1, 45deg);
+  }
+}
+
+@keyframes bar1Inactive {
+  0% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 1, 45deg);
+  }
+  50% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 1, 0deg);
+  }
+  60% {
+    transform: translate3d(0, calc((1 / 6) * 37px), 0) rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0);
+  }
+}
+
+@keyframes bar2Active {
+  from {
+    clip-path: inset(0% 0%);
+  }
+  to {
+    clip-path: inset(0% 50%);
+  }
+}
+
+@keyframes bar2Inactive {
+  to {
+    clip-path: inset(0% 0%);
+  }
+  from {
+    clip-path: inset(0% 50%);
+  }
+}
+
+@keyframes bar3Active {
+  0% {
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0) rotate3d(0, 0, 0, 0);
+  }
+  60% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0) rotate3d(0, 0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0)
+      rotate3d(0, 0, 1, -45deg);
+  }
+}
+
+@keyframes bar3Inactive {
+  0% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0)
+      rotate3d(0, 0, 1, -45deg);
+  }
+  50% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0)
+      rotate3d(0, 0, 1, 0deg);
+  }
+  60% {
+    transform: translate3d(0, calc(-1 * (1 / 6) * 37px), 0)
+      rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0);
+  }
+}
+
+@mixin sandwichMenu {
+  .svg-sandwich-container {
+    display: flex;
+    .bar-1,
+    .bar-2,
+    .bar-3 {
+      transition: all 0.25s;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .bar-1 {
+      animation: bar1Inactive 0.4s;
+    }
+    .bar-3 {
+      animation: bar3Inactive 0.4s;
+    }
+    .bar-2 {
+      clip-path: inset(0% 50%);
+      animation: bar2Inactive 0.25s 0.4s forwards;
+    }
+    &.active {
+      .bar-1 {
+        animation: bar1Active 0.4s 0.25s forwards;
+      }
+      .bar-2 {
+        animation: bar2Active 0.25s forwards;
+      }
+      .bar-3 {
+        animation: bar3Active 0.4s 0.25s forwards;
+      }
+    }
+  }
+}
